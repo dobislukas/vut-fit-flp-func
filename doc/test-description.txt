@@ -1,0 +1,69 @@
+FILES:
+
+    test01.in 
+
+    File with DIMACS encoded maximum flow problem from http://lpsolve.sourceforge.net/5.5/DIMACS_maxf.htm
+
+    test02.in 
+
+    Same file as test01.in, but without comment lines and modified 4 6 and 5 6 edges to 4 5 and 5 1. 
+    This makes target node 6 (sink) unreachable, but that is allowed under DIMACS format defined 
+    in above mentioned link.
+
+    test03.in
+    test04.in
+    test05.in
+
+    More maximum flow problems in DICAM format. Test 03 is from FIT BUT Graph Algorithm course presentation.
+    Tests 04 and 05 are from https://www.hackerearth.com/practice/algorithms/graphs/maximum-flow/tutorial/.
+
+TESTS:
+
+    test01_all.out
+
+    command: `$ ./ford-fulkerson -i -v -f ./test/test01.in`
+    Description: Demonstration of all flags working.
+
+    test01_stdin.out
+
+    command: `$ ./ford-fulkerson -i -v -f  < ./test/test01.in`
+    Description: Demonstration of use of standard input for input.
+
+    test01_i.out
+    test01_v.out
+    test01_f.out
+    
+    command: `$ ./ford-fulkerson -i ./test/test01.in`
+             `$ ./ford-fulkerson -v ./test/test01.in`
+             `$ ./ford-fulkerson -f ./test/test01.in`
+    Description: Demonstration of all flags working individually.
+
+    test01_order.out
+
+    command: `$ ./ford-fulkerson -f ./test/test01.in -v -i`
+    Description: Demonstration of arbitrary random order of arguments, if 
+                 conditions mentioned in README.md are satisfied.
+    
+    test01_badFlag.out
+
+    command: `$ ./ford-fulkerson -i -a ./test/test01.in`
+    Description: Demonstration of incorrect flag error. 
+                 "-" prefix makes bash ignore error and continue executing tests.
+    
+    test02.out
+
+    command: `$ ./ford-fulkerson -i -v -f ./test/test02.in`
+    Description: Demonstration of program capability to handle
+                 networks with unreachable target node (sink).
+
+    test03_all.out
+    test04_all.out
+    test05_all.out
+
+    commands: `$ ./ford-fulkerson -i -v -f ./test/test03.in`
+              `$ ./ford-fulkerson -i -v -f ./test/test04.in`
+              `$ ./ford-fulkerson -i -v -f ./test/test05.in`
+    Description: Demonstration of algorithm and all flags working 
+                 correctly on different maximum flow problems.
+                 Original comment lines are lost, and "-i" flag
+                 output has inserted standard DICAM format comments.
